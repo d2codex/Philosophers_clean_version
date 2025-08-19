@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 14:59:19 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 17:06:50 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <limits.h>
 
 // enums and structs
 
@@ -38,7 +39,7 @@ typedef struct	s_args
 	long	time_to_die;	// Time (ms) until a philo dies without eating
 	long	time_to_eat;	// Time (ms) a philo spends eating
 	long	time_to_sleep;	// Time (ms) a philo spends sleeping
-	int	meal_goal;	// Number of meals each philo must eat (0 = no limit)
+	int	meal_goal;	// Number of meals each philo must eat (-1 = no limit)
 }		t_args;
 
 typedef struct	s_philo
@@ -56,11 +57,25 @@ typedef	struct	s_sim
 {
 	t_args		args;		// Simulation parameters
 	t_philo		*philos;	// Array of philos
-	pthread		*forks;		// Array of forks
-	pthread		monitor_thread; // Thread monitoring philos for death or meal goal
+	pthread_t	*forks;		// Array of forks
+	pthread_t	monitor_thread; // Thread monitoring philos for death or meal goal
 	pthread_mutex_t	print_lock;	// Mutex to protect output
 	pthread_mutex_t	stop_lock;	// Mutex to protect sim_stopped flag
 	bool	sim_stopped;		// Flag indicating whether simulation should stop
 }		t_sim;
+
+// Prototypes
+
+// utils.c
+int     ft_strlen(const char *str);
+int     ft_atol(const char *str, long *out);
+int     ft_atoi(const char *str, int *out);
+void    print_usage(void);
+
+// init.c
+int     init_args(int ac, char **av, t_args *args);
+
+// errors.c
+int     error_return(const char *msg);
 
 #endif
