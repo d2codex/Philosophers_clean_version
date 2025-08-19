@@ -85,20 +85,3 @@ int	ft_atoi(const char *str, int *out)
 	*out = result;
 	return (1);
 }
-
-/**
- * @brief Prints the correct usage and argument requirements for the program.
- *
- * Lists each expected argument, its valid range, and whether it is optional.
- */
-void	print_usage(void)
-{
-	printf("Usage: ./philo <number_of_philos> <time_to_die> " 
-			"<time_to_eat> <time_to_sleep> [meal_goal]\n");
-	printf("Arguments:\n");
-	printf("  number_of_philos  : >= 1\n");
-	printf("  time_to_die       : > 0 (ms)\n");
-	printf("  time_to_eat       : > 0 (ms)\n");
-	printf("  time_to_sleep     : >= 0 (ms)\n");
-	printf("  meal_goal         : >= 1 (optional, default = no limit)\n");
-}

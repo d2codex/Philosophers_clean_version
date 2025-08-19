@@ -129,25 +129,3 @@ void	init_mutexes(t_sim *sim)
 		i++;
 	}
 }
-
-/**
- * @brief Handles the single-philosopher edge case.
- *
- * In a simulation with only one philosopher, the philosopher cannot eat
- * because there is only one fork. This function prints the appropriate
- * messages for taking the fork and dying after time_til_death milliseconds.
- *
- * @param args Pointer to the simulation arguments structure (t_args).
- */
-
-void	handle_one_philo(t_sim *sim)
-{
-	long	start;
-	long	elapsed;
-
-	start = get_time_ms();
-	elapsed = get_time_ms() - start;
-	printf("%ld 1 has taken a fork\n", elapsed);
-	usleep(sim->args.time_to_die * 1000);
-	printf("%ld 1 died\n", elapsed + sim->args.time_to_die);
-}

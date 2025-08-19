@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:06:48 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:44:54 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,38 @@ typedef	struct	s_sim
 int     ft_strlen(const char *str);
 int     ft_atol(const char *str, long *out);
 int     ft_atoi(const char *str, int *out);
-void    print_usage(void);
 
 // init.c
 int     init_args(int ac, char **av, t_args *args);
 int     init_forks(t_sim *sim);
 int     init_philos(t_sim *sim);
 void    init_mutexes(t_sim *sim);
-void    handle_one_philo(t_sim *sim);
 
 // errors.c
 int     error_return(const char *msg);
 
 // time.c
 long    get_time_ms(void);
+long    get_sim_time(t_sim *sim);
+void    smart_sleep(t_sim *sim, long ms);
+void    wait_for_start(t_sim *sim);
 
 // cleanup.c
 void    cleanup(t_sim *sim, const char *msg);
 void destroy_mutexes(t_sim *sim);
 
+// routine.c
+void    *philo_routine(void *arg);
+void    handle_one_philo(t_sim *sim);
+
+// actions.c
+void    grab_forks(t_philo *philo);
+void    eat(t_philo *philo);
+void    slumber(t_philo *philo);
+void    think(t_philo *philo);
+
+// print.c
+void    print_usage(void);
+void    print_display_msg(t_philo *philo, t_action action);
 
 #endif
