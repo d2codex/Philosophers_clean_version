@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:44:54 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:55:05 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,12 @@ void    think(t_philo *philo);
 // print.c
 void    print_usage(void);
 void    print_display_msg(t_philo *philo, t_action action);
+
+// monitor.c
+t_philo *check_starvation(t_sim *sim);
+int     check_meal_goal(t_sim *sim);
+void    *monitor(void *arg);
+bool    is_simulation_stopped(t_sim *sim);
+void    set_simulation_stopped(t_sim *sim, bool value);
 
 #endif

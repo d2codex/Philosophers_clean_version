@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 19:33:55 by diade-so          #+#    #+#              #
-#    Updated: 2025/08/19 22:33:00 by diade-so         ###   ########.fr        #
+#    Updated: 2025/08/19 22:53:20 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC_FILES = src/main.c \
 	    src/time.c \
 	    src/cleanup.c \
 	    src/routine.c \
-	    src/print.c
+	    src/actions.c \
+	    src/print.c \
+	    src/monitor.c
 
 
 # Object files
