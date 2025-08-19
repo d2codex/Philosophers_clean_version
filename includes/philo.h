@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 17:06:50 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:11:50 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef	struct	s_sim
 {
 	t_args		args;		// Simulation parameters
 	t_philo		*philos;	// Array of philos
-	pthread_t	*forks;		// Array of forks
 	pthread_t	monitor_thread; // Thread monitoring philos for death or meal goal
+	pthread_mutex_t	*forks;		// Array of forks
 	pthread_mutex_t	print_lock;	// Mutex to protect output
 	pthread_mutex_t	stop_lock;	// Mutex to protect sim_stopped flag
 	bool	sim_stopped;		// Flag indicating whether simulation should stop
@@ -74,6 +74,10 @@ void    print_usage(void);
 
 // init.c
 int     init_args(int ac, char **av, t_args *args);
+int     init_forks(t_sim *sim);
+int     init_philos(t_sim *sim);
+void    init_mutexes(t_sim *sim);
+//void    handle_one_philo(t_sim *sim);
 
 // errors.c
 int     error_return(const char *msg);
