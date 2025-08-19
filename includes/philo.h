@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 21:32:45 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 22:06:48 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum	e_action
 	DIED
 }		t_action;
 
+
 typedef struct	s_args
 {
 	int	num_philos;	// Number of philosphers 
@@ -42,16 +43,18 @@ typedef struct	s_args
 	int	meal_goal;	// Number of meals each philo must eat (-1 = no limit)
 }		t_args;
 
+typedef struct s_sim t_sim;
+
 typedef struct	s_philo
 {
 	int	id;			// Philo ID
 	pthread_t	thread;		// Thread representing this philo
 	long		last_meal_time; // Timestamp of last meal start time
-	long		start_time;	// Start time in ms
 	int		meals_eaten;	// Number of meals consumed
 	pthread_mutex_t	meal_lock;	// Protects last_meal_time and meals_eaten
 	pthread_mutex_t *fork1;		// Pointer to fork1 mutex
 	pthread_mutex_t	*fork2;		// Pointer to fork2 mutex
+	t_sim           *sim;
 }		t_philo;
 
 typedef	struct	s_sim
@@ -62,6 +65,7 @@ typedef	struct	s_sim
 	pthread_mutex_t	*forks;		// Array of forks
 	pthread_mutex_t	print_lock;	// Mutex to protect output
 	pthread_mutex_t	stop_lock;	// Mutex to protect sim_stopped flag
+	t_sim           *sim;
 	bool	sim_stopped;		// Flag indicating whether simulation should stop
 }		t_sim;
 
