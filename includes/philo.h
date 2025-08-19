@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 18:37:52 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:32:45 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_philo
 	int	id;			// Philo ID
 	pthread_t	thread;		// Thread representing this philo
 	long		last_meal_time; // Timestamp of last meal start time
+	long		start_time;	// Start time in ms
 	int		meals_eaten;	// Number of meals consumed
 	pthread_mutex_t	meal_lock;	// Protects last_meal_time and meals_eaten
 	pthread_mutex_t *fork1;		// Pointer to fork1 mutex
