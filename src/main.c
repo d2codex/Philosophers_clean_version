@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:22:21 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 18:07:48 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:17:31 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ int	main(int ac, char **av)
 	// Initialize simulation arguments
 	if (init_args(ac, av, &sim.args) != 0)
 		return (1);
-/*
 	if (sim.args.num_philos == 1)
 	{
 		handle_one_philo(&sim);
 		return 0;
 	}	
-*/
 	// Initialize forks and philosophers
 	if (init_forks(&sim) != 0)
 		return (1);

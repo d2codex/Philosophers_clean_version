@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:20:22 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 18:08:15 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:21:46 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	init_mutexes(t_sim *sim)
  *
  * @param args Pointer to the simulation arguments structure (t_args).
  */
-/*
+
 void	handle_one_philo(t_sim *sim)
 {
 	long	start;
@@ -147,6 +147,6 @@ void	handle_one_philo(t_sim *sim)
 	start = get_time_ms();
 	elapsed = get_time_ms() - start;
 	printf("%ld 1 has taken a fork\n", elapsed);
-	usleep(sim->args->time_til_death * 1000);
-	printf("%ld 1 died\n", elapsed + sim->args->time_til_death);
-}*/
+	usleep(sim->args.time_to_die * 1000);
+	printf("%ld 1 died\n", elapsed + sim->args.time_to_die);
+}

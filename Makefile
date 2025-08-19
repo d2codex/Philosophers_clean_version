@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 19:33:55 by diade-so          #+#    #+#              #
-#    Updated: 2025/08/19 16:49:08 by diade-so         ###   ########.fr        #
+#    Updated: 2025/08/19 18:22:18 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ BONUS_DIR = bonus
 SRC_FILES = src/main.c \
 	    src/utils.c \
 	    src/init.c \
-	    src/errors.c
+	    src/errors.c \
+	    src/time.c
 
 
 # Object files
