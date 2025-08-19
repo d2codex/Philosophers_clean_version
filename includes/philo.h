@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:55:05 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:06:43 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef	struct	s_sim
 	pthread_mutex_t	*forks;		// Array of forks
 	pthread_mutex_t	print_lock;	// Mutex to protect output
 	pthread_mutex_t	stop_lock;	// Mutex to protect sim_stopped flag
-	t_sim           *sim;
+	long	start_time;		// Time of simulation start 
 	bool	sim_stopped;		// Flag indicating whether simulation should stop
 }		t_sim;
 

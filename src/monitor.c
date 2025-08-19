@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:52:08 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:53:50 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:11:12 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	*monitor(void *arg)
 	t_sim *sim = (t_sim *)arg;
 	t_philo	*dead;
 
-	wait_for_start(sim->start_time);
+	wait_for_start(sim);
 	while (!is_simulation_stopped(sim))
 	{
 		dead = check_starvation(sim);

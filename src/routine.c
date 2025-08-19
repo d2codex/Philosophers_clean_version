@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:45:06 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:46:18 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:09:45 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    *philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	wait_for_start(philo->sim->start_time);
+	wait_for_start(philo->sim);
 	if (philo->id % 2 == 0)
 		smart_sleep(philo->sim, philo->sim->args.time_to_eat / 10);
 	while (!is_simulation_stopped(philo->sim))

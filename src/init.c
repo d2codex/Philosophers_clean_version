@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:20:22 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 21:34:36 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:01:45 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	init_philos(t_sim *sim)
 	{
 		sim->philos[i].id = i + 1;
 		sim->philos[i].last_meal_time = 0;
-		sim->philos[i].start_time = 0;
 		sim->philos[i].meals_eaten = 0;
 		sim->philos[i].fork1 = &sim->forks[i];
 		sim->philos[i].fork2 = &sim->forks[(i + 1) % sim->args.num_philos];
