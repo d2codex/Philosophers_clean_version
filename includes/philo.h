@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 18:19:32 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:37:52 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,10 @@ int     error_return(const char *msg);
 
 // time.c
 long    get_time_ms(void);
+
+// cleanup.c
+void    cleanup(t_sim *sim, const char *msg);
+void destroy_mutexes(t_sim *sim);
+
 
 #endif

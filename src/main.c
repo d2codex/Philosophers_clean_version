@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:22:21 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 18:17:31 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:48:15 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int	main(int ac, char **av)
 	}	
 	// Initialize forks and philosophers
 	if (init_forks(&sim) != 0)
-		return (1);
+		return (cleanup(&sim, "Failed to initialize forks"), 1);
+
 	if (init_philos(&sim) != 0)
-		return (1);
+		return (cleanup(&sim, "Failed to initialize philosophers"), 1);
 
 	// Initialize general mutexes
 	init_mutexes(&sim);
@@ -55,8 +56,8 @@ int	main(int ac, char **av)
 				(void *)sim.philos[i].fork1,
 				(void *)sim.philos[i].fork2);
 		i++;
-	}	
-
+	}
+	cleanup(&sim, "Simulation ended");	
 	return (0);
 }
 
