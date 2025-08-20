@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:18:36 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:05:05 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/20 12:30:47 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	smart_sleep(t_sim *sim, long ms)
 	long	wake_up;
 
 	wake_up = get_sim_time(sim) + ms;
-	while (!sim->sim_stopped && get_sim_time(sim) < wake_up)
+	while (!is_simulation_stopped(sim) && get_sim_time(sim) < wake_up)
 		usleep(100);
 }
 

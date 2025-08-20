@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:06:43 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:39:53 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int     ft_atoi(const char *str, int *out);
 int     init_args(int ac, char **av, t_args *args);
 int     init_forks(t_sim *sim);
 int     init_philos(t_sim *sim);
-void    init_mutexes(t_sim *sim);
+int     init_sim(t_sim *sim);
 
 // errors.c
 int     error_return(const char *msg);
@@ -92,8 +92,7 @@ void    smart_sleep(t_sim *sim, long ms);
 void    wait_for_start(t_sim *sim);
 
 // cleanup.c
-void    cleanup(t_sim *sim, const char *msg);
-void destroy_mutexes(t_sim *sim);
+void    destroy_sim(t_sim *sim, const char *msg);
 
 // routine.c
 void    *philo_routine(void *arg);

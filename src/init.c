@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:20:22 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:01:45 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:29:24 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	init_philos(t_sim *sim)
 		sim->philos[i].meals_eaten = 0;
 		sim->philos[i].fork1 = &sim->forks[i];
 		sim->philos[i].fork2 = &sim->forks[(i + 1) % sim->args.num_philos];
+		sim->philos[i].sim = sim;
 		pthread_mutex_init(&sim->philos[i].meal_lock, NULL);
 		i++;
 	}
@@ -110,21 +111,18 @@ int	init_philos(t_sim *sim)
 }
 
 /**
- * @brief Initializes simulation-wide mutexes.
- * 
- * @param sim Pointer to simulation struct
+ * @brief Initializes simulation state and mutexes.
+ *
+ * Sets initial timing and stop flag, and prepares synchronization locks.
+ *
+ * @param sim Pointer to the simulation context.
+ * @return 0 on success.
  */
-void	init_mutexes(t_sim *sim)
+int	init_sim(t_sim *sim)
 {
-	int	i;
-
-	pthread_mutex_init(&sim->print_lock, NULL);
+	sim->start_time = 0;
+    	sim->sim_stopped = false;
 	pthread_mutex_init(&sim->stop_lock, NULL);
-
-	i = 0;
-	while (i < sim->args.num_philos)
-	{
-		pthread_mutex_init(&sim->philos[i].meal_lock, NULL);
-		i++;
-	}
+	pthread_mutex_init(&sim->print_lock, NULL);
+	return (0);
 }

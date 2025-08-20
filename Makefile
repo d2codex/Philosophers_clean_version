@@ -6,7 +6,7 @@
 #    By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/07 19:33:55 by diade-so          #+#    #+#              #
-#    Updated: 2025/08/19 22:53:20 by diade-so         ###   ########.fr        #
+#    Updated: 2025/08/20 12:46:06 by diade-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ NAME = philo
 LIB = libphilo.a
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
-LDFLAGS = -lpthread
+CFLAGS = -Wall -Werror -Wextra -g3 -pthread
 INCLUDES = -I./includes
 
 SRC_DIR = src
@@ -47,7 +46,7 @@ all: $(NAME) $(LIB)
 
 # Build executable from objects
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 # Build static lib without main.o so tests can provide main()
 $(LIB): $(filter-out $(OBJ_DIR)/main.o, $(OBJ))

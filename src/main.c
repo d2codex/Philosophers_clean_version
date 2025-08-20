@@ -6,34 +6,30 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:22:21 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:00:58 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:34:00 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /**
- * @brief Initializes and starts the philosopher simulation.
+ * @brief Starts and manages the philosopher simulation.
  *
- * Sets synchronized start times, spawns philosopher threads,
- * and launches the monitor thread.
+ * Initializes start time, launches philosopher and monitor threads,
+ * and blocks until all threads complete.
  *
- * @param sim Simulation struct containing philosophers and shared data.
+ * @param sim Pointer to the simulation context.
  */
-void	start_simulation(t_sim *sim)
+void	run_simulation(t_sim *sim)
 {
-	long	t_start;
 	int		i;
 
 	if (!sim || !sim->args.num_philos)
 		return ;
-	t_start = get_time_ms() + 50;
+	sim->start_time = get_time_ms() + 50;
 	i = 0;
 	while (i < sim->args.num_philos)
-	{
-		sim->philos[i].last_meal_time = t_start;
-		i++;
-	}
+		sim->philos[i++].last_meal_time = sim->start_time;
 	i = 0;
 	while (i < sim->args.num_philos)
 	{
@@ -42,38 +38,11 @@ void	start_simulation(t_sim *sim)
 		i++;
 	}
 	pthread_create(&sim->monitor_thread, NULL, monitor, sim);
-}
-
-/**
- * @brief Stops the simulation and cleans up all resources.
- *
- * This function signals that the simulation has ended, waits for all
- * philosopher threads and the monitor thread to finish, destroys all
- * mutexes associated with forks, and frees dynamically allocated memory.
- *
- * @param sim Pointer to the simulation struct containing philosophers and forks.
- */
-void	stop_simulation(t_sim *sim)
-{
-	int	i;
-
 	i = 0;
 	while (i < sim->args.num_philos)
-	{
-		pthread_join(sim->philos[i].thread, NULL);
-		i++;
-	}
+		pthread_join(sim->philos[i++].thread, NULL);
 	pthread_join(sim->monitor_thread, NULL);
-	i = 0;
-	while (i < sim->args.num_philos)
-	{
-		pthread_mutex_destroy(&sim->forks[i]);
-		i++;
-	}
-	free(sim->philos);
-	free(sim->forks);
 }
-
 
 int	main(int ac, char **av)
 {
@@ -84,17 +53,15 @@ int	main(int ac, char **av)
 	if (sim.args.num_philos == 1)
 	{
 		handle_one_philo(&sim);
-		return 0;
+		return (0);
 	}	
+	if (init_sim(&sim) != 0)
+		return (destroy_sim(&sim, "Failed to initialize simulation"), 1);
 	if (init_forks(&sim) != 0)
-		return (cleanup(&sim, "Failed to initialize forks"), 1);
-
+		return (destroy_sim(&sim, "Failed to initialize forks"), 1);
 	if (init_philos(&sim) != 0)
-		return (cleanup(&sim, "Failed to initialize philosophers"), 1);
-	init_mutexes(&sim);
-	start_simulation(&sim);
-	stop_simulation(&sim);
-	cleanup(&sim, "Simulation ended");	
+		return (destroy_sim(&sim, "Failed to initialize philosophers"), 1);
+	run_simulation(&sim);
+	destroy_sim(&sim, NULL);
 	return (0);
 }
-
