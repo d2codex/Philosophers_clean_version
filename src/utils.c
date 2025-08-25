@@ -46,7 +46,7 @@ int	ft_atol(const char *str, long *out)
 		return (0);
 	while (*str)
 	{
-		if(*str < '0' || *str > '9')
+		if (*str < '0' || *str > '9')
 			return (0);
 		if (result > (LONG_MAX -(*str - '0')) / 10)
 			return (0);

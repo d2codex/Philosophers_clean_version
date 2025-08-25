@@ -17,7 +17,7 @@ void	destroy_sim(t_sim *sim, const char *msg)
 	int	i;
 
 	if (!sim)
-		return;
+		return ;
 	if (msg)
 		printf("%s\n", msg);
 	if (sim->philos)

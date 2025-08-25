@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:45:29 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/20 20:39:53 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:02:48 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ typedef	struct	s_sim
 	bool	sim_stopped;		// Flag indicating whether simulation should stop
 }		t_sim;
 
-// Prototypes
+/* ************************************************************************** */
+/*                                Prototypes                                  */
+/* ************************************************************************** */
 
 // utils.c
 int     ft_strlen(const char *str);
@@ -79,6 +81,7 @@ int     ft_atoi(const char *str, int *out);
 // init.c
 int     init_args(int ac, char **av, t_args *args);
 int     init_forks(t_sim *sim);
+void assign_forks(t_philo *philo, t_sim *sim);
 int     init_philos(t_sim *sim);
 int     init_sim(t_sim *sim);
 

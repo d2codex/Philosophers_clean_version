@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:20:22 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/20 20:29:24 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:08:12 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	init_forks(t_sim *sim)
 	sim->forks = malloc(sizeof(pthread_mutex_t) * sim->args.num_philos);
 	if (!sim->forks)
 		return (error_return("Failed to malloc for forks\n"));
-
 	i = 0;
 	while (i < sim->args.num_philos)
 	{
@@ -78,14 +77,40 @@ int	init_forks(t_sim *sim)
 		}
 		i++;
 	}
-	return 0;
+	return (0);
+}
+
+
+void assign_forks(t_philo *philo, t_sim *sim)
+{
+    if (philo->id % 2 == 1)
+    {
+        philo->fork1 = &sim->forks[philo->id - 1];
+        philo->fork2 = &sim->forks[philo->id % sim->args.num_philos];
+    }
+    else
+    {
+        philo->fork1 = &sim->forks[philo->id % sim->args.num_philos];
+        philo->fork2 = &sim->forks[philo->id - 1];
+    }
 }
 
 /**
- * @brief Allocates and initializes philosopher structs.
+ * @brief Initializes the philosophers and assigns their forks.
  * 
- * @param sim Pointer to the simulation struct containing philos and forks.
- * @return int 0 on success, 1 on failure
+ * Allocates memory for all philosophers and sets their initial state:
+ *  - unique ID (starting from 1)
+ *  - last_meal_time = 0
+ *  - meals_eaten = 0
+ *  - pointer to the simulation struct
+ *  - mutex to protect access to their last meal time.
+ * 
+ * Fork assignment is staggered to avoid deadlocks:
+ *  - Odds pick up lower numbered fork first.
+ *  - Evens pick up higher numbered fork first.
+ * 
+ * @param sim Pointer to the simulation struct.
+ * @return int Returns 0 on success, 1 on failure.
  */
 int	init_philos(t_sim *sim)
 {
@@ -94,20 +119,18 @@ int	init_philos(t_sim *sim)
 	sim->philos = malloc(sizeof(t_philo) * sim->args.num_philos);
 	if (!sim->philos)
 		return (error_return("Failed to malloc for philos\n"));
-
 	i = 0;
 	while (i < sim->args.num_philos)
 	{
 		sim->philos[i].id = i + 1;
 		sim->philos[i].last_meal_time = 0;
 		sim->philos[i].meals_eaten = 0;
-		sim->philos[i].fork1 = &sim->forks[i];
-		sim->philos[i].fork2 = &sim->forks[(i + 1) % sim->args.num_philos];
-		sim->philos[i].sim = sim;
+    assign_forks(&sim->philos[i], sim);
+   	sim->philos[i].sim = sim;
 		pthread_mutex_init(&sim->philos[i].meal_lock, NULL);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 /**
@@ -121,7 +144,7 @@ int	init_philos(t_sim *sim)
 int	init_sim(t_sim *sim)
 {
 	sim->start_time = 0;
-    	sim->sim_stopped = false;
+  sim->sim_stopped = false;
 	pthread_mutex_init(&sim->stop_lock, NULL);
 	pthread_mutex_init(&sim->print_lock, NULL);
 	return (0);

@@ -18,7 +18,7 @@
  */
 void	grab_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+	if (philo->fork1 < philo->fork2)
 	{
 		pthread_mutex_lock(philo->fork1);
 		print_display_msg(philo, GOT_FORK1);
@@ -67,7 +67,8 @@ void	slumber(t_philo *philo)
  *
  * This helps avoid grabbing forks right after eating, giving others a chance
  * to eat first. The wait time is based on how long until the philosopher would
- * die, so they don’t risk starving. If there’s no safe time left, thinking is skipped.
+ * die. This time is then halved to allow time to grab forks again.
+ * If there’s no safe time left, thinking is skipped.
  *
  * @param philo The philosopher.
  */
@@ -79,8 +80,7 @@ void	think(t_philo *philo)
 
 	now = get_sim_time(philo->sim);
 	elapsed = now - philo->last_meal_time;
-	time_left = philo->sim->args.time_to_die - elapsed;
-
+	time_left = (philo->sim->args.time_to_die - elapsed) / 2;
 	if (time_left > 0)
 	{
 		print_display_msg(philo, THINKING);

@@ -25,7 +25,7 @@
 t_philo	*check_starvation(t_sim *sim)
 {
 	long	now;
-	int	i;
+	int   i;
 
 	now = get_sim_time(sim);
 	i = 0;
@@ -80,16 +80,18 @@ int	check_meal_goal(t_sim *sim)
  * This function runs in its own thread. It repeatedly checks if any philosopher
  * has starved using check_starvation(), or if all have met their meal goals
  * using check_meal_goal(). If a philosopher dies, it prints the death message
- * and stops the simulation. If the meal goal is reached, it stops the simulation.
+ * and stops the simulation. If the meal goal is reached, it stops the
+ * simulation.
  *
  * @param arg Pointer to t_sim containing simulation info and philosophers array.
  * @return Always returns NULL (thread exit).
  */
 void	*monitor(void *arg)
 {
-	t_sim *sim = (t_sim *)arg;
-	t_philo	*dead;
+	t_sim   *sim;
+	t_philo *dead;
 
+  sim = (t_sim *)arg;
 	wait_for_start(sim);
 	while (!is_simulation_stopped(sim))
 	{
@@ -105,7 +107,7 @@ void	*monitor(void *arg)
 			set_simulation_stopped(sim, true);
 			return (NULL);
 		}
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }

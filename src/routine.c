@@ -22,19 +22,19 @@
  * @param arg Pointer to the philosopher structure (cast from void*).
  * @return void* Required by pthreads.
  */
-void    *philo_routine(void *arg)
+void  *philo_routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	wait_for_start(philo->sim);
 	if (philo->id % 2 == 0)
-		smart_sleep(philo->sim, philo->sim->args.time_to_eat / 10);
+		smart_sleep(philo->sim, philo->sim->args.time_to_eat / 2);
 	while (!is_simulation_stopped(philo->sim))
 	{
 		if (philo->sim->args.meal_goal > 0
 			&& philo->meals_eaten >= philo->sim->args.meal_goal)
-			break;
+			break ;
 		grab_forks(philo);
 		eat(philo);
 		slumber(philo);
