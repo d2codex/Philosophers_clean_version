@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:45:06 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:09:45 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:41:07 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param arg Pointer to the philosopher structure (cast from void*).
  * @return void* Required by pthreads.
  */
-void  *philo_routine(void *arg)
+void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
 

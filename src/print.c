@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:35:42 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 22:41:30 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:40:41 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
  */
 void	print_usage(void)
 {
-	printf("Usage: ./philo <number_of_philos> <time_to_die> " 
-			"<time_to_eat> <time_to_sleep> [meal_goal]\n");
+	printf("Usage: ./philo <number_of_philos> <time_to_die> "
+		"<time_to_eat> <time_to_sleep> [meal_goal]\n");
 	printf("Arguments:\n");
 	printf("  number_of_philos  : >= 1\n");
 	printf("  time_to_die       : > 0 (ms)\n");
@@ -45,7 +45,6 @@ void	print_display_msg(t_philo *philo, t_action action)
 	long	time;
 
 	pthread_mutex_lock(&philo->sim->print_lock);
-
 	if (is_simulation_stopped(philo->sim) && action != DIED)
 	{
 		pthread_mutex_unlock(&philo->sim->print_lock);

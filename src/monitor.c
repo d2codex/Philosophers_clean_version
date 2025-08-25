@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:52:08 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/19 23:11:12 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:39:20 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
  * to time_til_death. Returns a pointer to the first philosopher that exceeded
  * the limit, or NULL if none have starved.
  *
- * @param sim Pointer to the simulation structure containing philosophers and timing info.
+ * @param sim Pointer to the simulation structure containing philosophers and 
+ * timing info.
+ * 
  * @return Pointer to the starving philosopher, or NULL if all are alive.
  */
 t_philo	*check_starvation(t_sim *sim)
 {
 	long	now;
-	int   i;
+	int		i;
 
 	now = get_sim_time(sim);
 	i = 0;
@@ -48,9 +50,12 @@ t_philo	*check_starvation(t_sim *sim)
  * @brief Checks if all philosophers have reached their meal goal.
  *
  * Loops through all philosophers and verifies if each has eaten at least
- * `meal_goal` times. If any philosopher hasn't, it returns 0. Otherwise, returns 1.
+ * meal_goal times. If any philosopher hasn't, it returns 0. Otherwise,
+ * returns 1.
  *
- * @param sim Pointer to the simulation structure containing philosophers and meal goal.
+ * @param sim Pointer to the simulation structure containing philosophers and
+ * meal goal.
+ * 
  * @return 1 if all have met the goal, 0 otherwise.
  */
 int	check_meal_goal(t_sim *sim)
@@ -88,10 +93,10 @@ int	check_meal_goal(t_sim *sim)
  */
 void	*monitor(void *arg)
 {
-	t_sim   *sim;
-	t_philo *dead;
+	t_sim	*sim;
+	t_philo	*dead;
 
-  sim = (t_sim *)arg;
+	sim = (t_sim *)arg;
 	wait_for_start(sim);
 	while (!is_simulation_stopped(sim))
 	{

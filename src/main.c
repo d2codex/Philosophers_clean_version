@@ -6,7 +6,7 @@
 /*   By: diade-so <diade-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 15:22:21 by diade-so          #+#    #+#             */
-/*   Updated: 2025/08/21 11:01:50 by diade-so         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:37:12 by diade-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	run_simulation(t_sim *sim)
 
 int	main(int ac, char **av)
 {
-  t_sim sim;
+	t_sim	sim;
 
 	if (init_args(ac, av, &sim.args) != 0)
 		return (1);
